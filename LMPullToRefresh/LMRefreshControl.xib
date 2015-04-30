@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7702"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LMRefreshControl"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="jcm-v8-cwz" customClass="LMRefreshControl">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" placeholderIntrinsicWidth="50" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="gX6-If-SRC">
+                    <rect key="frame" x="124" y="14" width="73" height="57"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="57" id="DlX-0F-JMp"/>
+                        <constraint firstAttribute="width" constant="73" id="Rm2-Ec-for"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="gX6-If-SRC" secondAttribute="centerX" id="LsP-UH-ccv"/>
+                <constraint firstAttribute="centerY" secondItem="gX6-If-SRC" secondAttribute="centerY" id="fsr-cD-72f"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="eyeView" destination="gX6-If-SRC" id="O6p-6x-SaW"/>
+            </connections>
+            <point key="canvasLocation" x="199" y="70"/>
+        </view>
+    </objects>
+</document>

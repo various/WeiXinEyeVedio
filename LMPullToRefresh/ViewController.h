@@ -1,0 +1,16 @@
+//
+//  ViewController.h
+//  LMPullToRefresh
+//
+//  Created by Tim Geng on 3/25/15.
+//  Copyright (c) 2015 GF. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface ViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIViewControllerAnimatedTransitioning,UIViewControllerTransitioningDelegate,UINavigationControllerDelegate>
+
+@property(nonatomic,weak) IBOutlet UITableView *tableView;
+
+@end
+
