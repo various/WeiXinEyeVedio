@@ -19,32 +19,96 @@
 @implementation ViewController
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext{
-    UIViewController *src = (UIViewController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    UIViewController *dest = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    
-    CGRect f = src.view.frame;
-    CGRect originalSourceRect = src.view.frame;
-    f.origin.y = f.size.height;
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        src.view.frame = f;
+    if ([[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey] isKindOfClass:[ViewController class]]) {
+        ViewController *src = (ViewController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+        UIViewController *dest = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+        src = (ViewController *)src;
+        CGRect f = src.view.frame;
+        CGRect originalSourceRect = src.view.frame;
+        f.origin.y = f.size.height;
         
-    } completion:^(BOOL finished){
-        src.view.alpha = 0;
-        dest.view.frame = f;
-        dest.view.alpha = 0.0f;
-        [[src.view superview] addSubview:dest.view];
-        [UIView animateWithDuration:0.5 animations:^{
+        [UIView animateWithDuration:1 animations:^{
+           // src.tableView.frame = f;
+            [src.tableView setContentInset:UIEdgeInsetsMake(f.origin.y, 0, 0, 0)];
             
+        } completion:^(BOOL finished){
+            src.view.alpha = 0;
+            dest.view.frame = f;
+            dest.view.alpha = 0.0f;
+            [[src.view superview] addSubview:dest.view];
             dest.view.frame = originalSourceRect;
             dest.view.alpha = 1.0f;
-        } completion:^(BOOL finished) {
-            
-            //[dest.view removeFromSuperview];
-            src.view.alpha = 1.0f;
-            [transitionContext completeTransition:YES];
+            [UIView animateWithDuration:0.5 animations:^{
+                
+                
+            } completion:^(BOOL finished) {
+                [src.tableView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+
+                //[dest.view removeFromSuperview];
+                src.view.alpha = 1.0f;
+                [transitionContext completeTransition:YES];
+            }];
         }];
-    }];
+    }else{
+        UIViewController *src = (UIViewController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+        UIViewController *dest = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+        src = (ViewController *)src;
+        CGRect f = src.view.frame;
+        CGRect originalSourceRect = src.view.frame;
+        f.origin.y = f.size.height;
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            src.view.frame = f;
+            
+        } completion:^(BOOL finished){
+            src.view.alpha = 0;
+            dest.view.frame = f;
+            dest.view.alpha = 0.0f;
+            [[src.view superview] addSubview:dest.view];
+            [UIView animateWithDuration:0.5 animations:^{
+                
+                dest.view.frame = originalSourceRect;
+                dest.view.alpha = 1.0f;
+            } completion:^(BOOL finished) {
+                
+                //[dest.view removeFromSuperview];
+                src.view.alpha = 1.0f;
+                [transitionContext completeTransition:YES];
+            }];
+        }];
+    }
+   
+//    if ([src isKindOfClass:[ViewController class]]) {
+//        
+//
+//    }else{
+//        UIViewController *dest = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+//        
+//        CGRect f = src.view.frame;
+//        CGRect originalSourceRect = src.view.frame;
+//        f.origin.y = f.size.height;
+//        
+//        [UIView animateWithDuration:0.5 animations:^{
+//            src.view.frame = f;
+//            
+//        } completion:^(BOOL finished){
+//            src.view.alpha = 0;
+//            dest.view.frame = f;
+//            dest.view.alpha = 0.0f;
+//            [[src.view superview] addSubview:dest.view];
+//            [UIView animateWithDuration:0.5 animations:^{
+//                
+//                dest.view.frame = originalSourceRect;
+//                dest.view.alpha = 1.0f;
+//            } completion:^(BOOL finished) {
+//                
+//                //[dest.view removeFromSuperview];
+//                src.view.alpha = 1.0f;
+//                [transitionContext completeTransition:YES];
+//            }];
+//        }];
+//    }
+
 }
 
 
