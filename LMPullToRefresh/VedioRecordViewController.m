@@ -16,8 +16,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //  self.navigationController.navigationBar.backgroundColor = [UIColor blackColor];
-    // Do any additional setup after loading the view from its nib.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlack];
+//    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+//    self.navigationController.navigationBar.translucent = NO;
+    
+    UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
+    [left setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
+    self.navigationItem.leftBarButtonItem = left;
+
+}
+
+-(void)cancel{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+
+//    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+//    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)didReceiveMemoryWarning {

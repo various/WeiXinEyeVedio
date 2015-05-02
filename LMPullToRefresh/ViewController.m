@@ -7,107 +7,103 @@
 //
 
 #import "ViewController.h"
-#import "LMRefreshControl.h"
+#import "LMEyeVedioControl.h"
 #import "VedioRecordViewController.h"
 @interface ViewController ()
 
-@property(nonatomic,strong) LMRefreshControl *refreshControl;
+@property(nonatomic,strong) LMEyeVedioControl *refreshControl;
 @property(nonatomic,strong) id <UIViewControllerContextTransitioning> transitionContext;
 
 @end
 
 @implementation ViewController
 
-- (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext{
-    if ([[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey] isKindOfClass:[ViewController class]]) {
-        ViewController *src = (ViewController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-        UIViewController *dest = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-        src = (ViewController *)src;
-        CGRect f = src.view.frame;
-        CGRect originalSourceRect = src.view.frame;
-        f.origin.y = f.size.height;
-        
-        [UIView animateWithDuration:1 animations:^{
-           // src.tableView.frame = f;
-            [src.tableView setContentInset:UIEdgeInsetsMake(f.origin.y, 0, 0, 0)];
-            
-        } completion:^(BOOL finished){
-            src.view.alpha = 0;
-            dest.view.frame = f;
-            dest.view.alpha = 0.0f;
-            [[src.view superview] addSubview:dest.view];
-            dest.view.frame = originalSourceRect;
-            dest.view.alpha = 1.0f;
-            [UIView animateWithDuration:0.5 animations:^{
-                
-                
-            } completion:^(BOOL finished) {
-                [src.tableView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    CGFloat y = [[UIScreen mainScreen] bounds].size.height;
+//    [self.tableView setContentOffset:CGPointMake(0, -y) animated:YES];
+}
 
-                //[dest.view removeFromSuperview];
-                src.view.alpha = 1.0f;
-                [transitionContext completeTransition:YES];
-            }];
-        }];
-    }else{
-        UIViewController *src = (UIViewController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-        UIViewController *dest = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-        src = (ViewController *)src;
-        CGRect f = src.view.frame;
-        CGRect originalSourceRect = src.view.frame;
-        f.origin.y = f.size.height;
+- (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext{
+    
+    if ([[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey] isKindOfClass:[ViewController class]]) {
+        UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+        ViewController *srcVC = (ViewController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+        // 2. Set init frame for toVC
+        CGRect screenBounds = [[UIScreen mainScreen] bounds];
+        CGRect finalFrame = [transitionContext finalFrameForViewController:toVC];
+        toVC.view.frame = CGRectOffset(finalFrame, 0, screenBounds.size.height);
         
-        [UIView animateWithDuration:0.5 animations:^{
-            src.view.frame = f;
-            
-        } completion:^(BOOL finished){
-            src.view.alpha = 0;
-            dest.view.frame = f;
-            dest.view.alpha = 0.0f;
-            [[src.view superview] addSubview:dest.view];
-            [UIView animateWithDuration:0.5 animations:^{
-                
-                dest.view.frame = originalSourceRect;
-                dest.view.alpha = 1.0f;
-            } completion:^(BOOL finished) {
-                
-                //[dest.view removeFromSuperview];
-                src.view.alpha = 1.0f;
-                [transitionContext completeTransition:YES];
-            }];
-        }];
+        // 3. Add toVC's view to containerView
+        UIView *containerView = [transitionContext containerView];
+        
+        
+        [srcVC.tableView setContentOffset:CGPointMake(0, -400) animated:YES];
+        [containerView addSubview:toVC.view];
+        // 4. Do animate now
+        NSTimeInterval duration = [self transitionDuration:transitionContext];
+        
+        [UIView animateWithDuration:duration
+                              delay:0.0
+             usingSpringWithDamping:0.6
+              initialSpringVelocity:0.0
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             
+                             
+                             
+                         } completion:^(BOOL finished) {
+                             // 5. Tell context that we completed.
+                             toVC.view.frame = finalFrame;
+                             
+                             [transitionContext completeTransition:YES];
+                         }];
+//        double delayInSeconds = 2.0;
+//        //创建一个调度时间,相对于默认时钟或修改现有的调度时间。
+//        dispatch_time_t delayInNanoSeconds =dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+//        //推迟两纳秒执行
+//        dispatch_queue_t concurrentQueue =dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//        dispatch_after(delayInNanoSeconds, concurrentQueue, ^(void){
+//            NSLog(@"Grand Center Dispatch!");
+//        });
+        
+        
+        
+    
+
+    }else{
+        ViewController *toVC = (ViewController *)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+        UIViewController *srcVC = (UIViewController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+        // 2. Set init frame for toVC
+        CGRect screenBounds = [[UIScreen mainScreen] bounds];
+        CGRect finalFrame = [transitionContext finalFrameForViewController:toVC];
+        toVC.view.frame = CGRectOffset(finalFrame, 0, screenBounds.size.height);
+        
+        // 3. Add toVC's view to containerView
+        UIView *containerView = [transitionContext containerView];
+        [containerView addSubview:toVC.view];
+        
+        // 4. Do animate now
+        NSTimeInterval duration = [self transitionDuration:transitionContext];
+        [toVC.tableView setContentOffset:CGPointMake(0, -[[UIScreen mainScreen] bounds].size.height) animated:NO];
+
+        [UIView animateWithDuration:duration
+                              delay:0.0
+             usingSpringWithDamping:0.6
+              initialSpringVelocity:0.0
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             
+                             [self.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
+                             
+                         } completion:^(BOOL finished) {
+                             // 5. Tell context that we completed.
+                             toVC.view.frame = finalFrame;
+                             
+                             [transitionContext completeTransition:YES];
+                         }];
     }
    
-//    if ([src isKindOfClass:[ViewController class]]) {
-//        
-//
-//    }else{
-//        UIViewController *dest = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-//        
-//        CGRect f = src.view.frame;
-//        CGRect originalSourceRect = src.view.frame;
-//        f.origin.y = f.size.height;
-//        
-//        [UIView animateWithDuration:0.5 animations:^{
-//            src.view.frame = f;
-//            
-//        } completion:^(BOOL finished){
-//            src.view.alpha = 0;
-//            dest.view.frame = f;
-//            dest.view.alpha = 0.0f;
-//            [[src.view superview] addSubview:dest.view];
-//            [UIView animateWithDuration:0.5 animations:^{
-//                
-//                dest.view.frame = originalSourceRect;
-//                dest.view.alpha = 1.0f;
-//            } completion:^(BOOL finished) {
-//                
-//                //[dest.view removeFromSuperview];
-//                src.view.alpha = 1.0f;
-//                [transitionContext completeTransition:YES];
-//            }];
-//        }];
-//    }
 
 }
 
@@ -135,10 +131,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.refreshControl = [LMRefreshControl initRefreshControl:self targetAction:@selector(startLoading) scrollView:self.tableView];
+    self.refreshControl = [LMEyeVedioControl initRefreshControl:self targetAction:@selector(startLoading) scrollView:self.tableView];
 
     
-    
+
 
     VedioRecordViewController *vedioController = [[VedioRecordViewController alloc] initWithNibName:@"VedioRecordViewController" bundle:nil];
     __weak typeof(self) weakSelf = self;

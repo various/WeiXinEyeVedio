@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LMRefreshControl : UIView
+@interface LMEyeVedioControl : UIView
 
-+(LMRefreshControl *)initRefreshControl:(id)target targetAction:(SEL)targetAction scrollView:(UIScrollView *)scrollView;
++(LMEyeVedioControl *)initRefreshControl:(id)target targetAction:(SEL)targetAction scrollView:(UIScrollView *)scrollView;
 
 - (void)endRefresh;
 

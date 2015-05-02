@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 GF. All rights reserved.
 //
 
-#import "LMRefreshControl.h"
+#import "LMEyeVedioControl.h"
 
 static const CGFloat EyeBeginHeight = 44;
 static const CGFloat EyeBallShowHeight = 66;
@@ -17,13 +17,15 @@ static const CGFloat EyeCircleEnd = 80;
 static const CGFloat EyeOrbitalBegin = 84;
 static const CGFloat EyeOrbitalEnd = 105;
 
+static const CGFloat EyeBecomeToWhiteColor = 110;
+
 static const CGFloat EyeOrbitalMaskHeight = 45;
 
 static const CGFloat EyeVedioShowHeight = 150;
 
 #define EyeColor [UIColor colorWithRed:158/255.0 green:153/255.0 blue:150/255.0 alpha:1.0]
 
-@interface LMRefreshControl ()<UIScrollViewDelegate>
+@interface LMEyeVedioControl ()<UIScrollViewDelegate>
 
 @property(nonatomic,strong) UIScrollView *scrollView;
 @property(nonatomic,strong) NSMutableArray *loadingImages;
@@ -53,11 +55,11 @@ static const CGFloat EyeVedioShowHeight = 150;
 @end
 
 
-@implementation LMRefreshControl
+@implementation LMEyeVedioControl
 
-+(LMRefreshControl *)initRefreshControl:(id)target targetAction:(SEL)targetAction scrollView:(UIScrollView *)scrollView{
-    NSArray *nibViews = [[NSBundle mainBundle] loadNibNamed:@"LMRefreshControl" owner:self options:nil];
-    LMRefreshControl *refreshControl = (LMRefreshControl *)[nibViews firstObject];
++(LMEyeVedioControl *)initRefreshControl:(id)target targetAction:(SEL)targetAction scrollView:(UIScrollView *)scrollView{
+    NSArray *nibViews = [[NSBundle mainBundle] loadNibNamed:@"LMEyeVedioControl" owner:self options:nil];
+    LMEyeVedioControl *refreshControl = (LMEyeVedioControl *)[nibViews firstObject];
     refreshControl.scrollView = scrollView;
     refreshControl.frame = CGRectMake(0, 0, refreshControl.scrollView.frame.size.width, 0);
     [refreshControl.scrollView addSubview:refreshControl];
@@ -81,10 +83,9 @@ static const CGFloat EyeVedioShowHeight = 150;
 
     self.eyeLayer = [CAShapeLayer layer];
     self.eyeLayer.frame = self.eyeView.bounds;
-    self.eyeLayer.backgroundColor = [UIColor purpleColor].CGColor;
+    self.eyeLayer.backgroundColor = [UIColor clearColor].CGColor;
     [self.eyeView.layer addSublayer:self.eyeLayer];
     self.eyeLayer.fillColor = EyeColor.CGColor;
-    self.eyeLayer.strokeColor = EyeColor.CGColor;
     self.eyeLayer.lineWidth = 1.0;
     self.eyePath = [[UIBezierPath alloc] init];
     
@@ -93,7 +94,7 @@ static const CGFloat EyeVedioShowHeight = 150;
     self.circleLayer.backgroundColor = [UIColor clearColor].CGColor;
     [self.eyeView.layer addSublayer:self.circleLayer];
     self.circleLayer.fillColor = [UIColor clearColor].CGColor;
-    self.circleLayer.strokeColor = EyeColor.CGColor;
+
     self.circleLayer.lineWidth = 1.0;
     self.circlePath = [[UIBezierPath alloc] init];
     
@@ -102,7 +103,6 @@ static const CGFloat EyeVedioShowHeight = 150;
     self.orbitalLayer.backgroundColor = [UIColor clearColor].CGColor;
     [self.eyeView.layer addSublayer:self.orbitalLayer];
     self.orbitalLayer.fillColor = [UIColor clearColor].CGColor;
-    self.orbitalLayer.strokeColor = EyeColor.CGColor;
     self.orbitalLayer.lineWidth = 1.0;
     self.orbitalPath = [[UIBezierPath alloc] init];
     
@@ -120,7 +120,6 @@ static const CGFloat EyeVedioShowHeight = 150;
     self.orbitalDownLayer.backgroundColor = [UIColor clearColor].CGColor;
     [self.eyeView.layer addSublayer:self.orbitalDownLayer];
     self.orbitalDownLayer.fillColor = [UIColor clearColor].CGColor;
-    self.orbitalDownLayer.strokeColor = EyeColor.CGColor;
     self.orbitalDownLayer.lineWidth = 1.0;
     self.orbitalDownPath = [[UIBezierPath alloc] init];
     
@@ -133,7 +132,24 @@ static const CGFloat EyeVedioShowHeight = 150;
     self.orbitalDownLayer.mask = self.orbitalMaskDownLayer;
     self.orbitalMaskDownLayer.backgroundColor = [UIColor blueColor].CGColor;
     
+
+    [self setStrokeColorToEyeColor];
 }
+
+-(void)setStrokeColorToEyeColor{
+    self.eyeLayer.strokeColor = EyeColor.CGColor;
+    self.orbitalLayer.strokeColor = EyeColor.CGColor;
+    self.orbitalDownLayer.strokeColor = EyeColor.CGColor;
+    self.circleLayer.strokeColor = EyeColor.CGColor;
+}
+
+-(void)setStrokeColorToWhiteColor{
+    self.eyeLayer.strokeColor = [UIColor whiteColor].CGColor;
+    self.orbitalLayer.strokeColor = [UIColor whiteColor].CGColor;
+    self.orbitalDownLayer.strokeColor = [UIColor whiteColor].CGColor;
+    self.circleLayer.strokeColor = [UIColor whiteColor].CGColor;
+}
+
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     self.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.contentOffset.y);
     CGFloat offsexY = ABS(self.scrollView.contentOffset.y);
@@ -221,6 +237,10 @@ static const CGFloat EyeVedioShowHeight = 150;
         }
     }
     
+    if (offsexY >= EyeBecomeToWhiteColor) {
+        [self setStrokeColorToWhiteColor];
+    }
+    
     [self.eyeLayer setNeedsDisplay];
     [self.circleLayer setNeedsDisplay];
     [self.eyeView setNeedsDisplay];
@@ -242,6 +262,7 @@ static const CGFloat EyeVedioShowHeight = 150;
     self.circlePath.CGPath = [UIBezierPath bezierPath].CGPath;
     self.orbitalPath.CGPath = [UIBezierPath bezierPath].CGPath;
     self.orbitalDownPath.CGPath = [UIBezierPath bezierPath].CGPath;
+    [self setStrokeColorToEyeColor];
     self.hasShowVideo = NO;
     [self.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     self.isDragging = YES;

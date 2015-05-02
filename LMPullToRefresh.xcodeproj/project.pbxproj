@@ -17,8 +17,8 @@
 		7F8FD02F1AC2575C00C40F6E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F8FD02E1AC2575C00C40F6E /* Images.xcassets */; };
 		7F8FD0321AC2575C00C40F6E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8FD0301AC2575C00C40F6E /* LaunchScreen.xib */; };
 		7F8FD03E1AC2575C00C40F6E /* LMPullToRefreshTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8FD03D1AC2575C00C40F6E /* LMPullToRefreshTests.m */; };
-		7F8FD0491AC25CBC00C40F6E /* LMRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8FD0481AC25CBC00C40F6E /* LMRefreshControl.m */; };
-		7F8FD04B1AC25CD300C40F6E /* LMRefreshControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8FD04A1AC25CD300C40F6E /* LMRefreshControl.xib */; };
+		7F8FD0491AC25CBC00C40F6E /* LMEyeVedioControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8FD0481AC25CBC00C40F6E /* LMEyeVedioControl.m */; };
+		7F8FD04B1AC25CD300C40F6E /* LMEyeVedioControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8FD04A1AC25CD300C40F6E /* LMEyeVedioControl.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,11 +32,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7F30514F1AF1EABB00842528 /* EyeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EyeView.h; sourceTree = "<group>"; };
-		7F3051501AF1EABB00842528 /* EyeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EyeView.m; sourceTree = "<group>"; };
-		7F3051521AF2603C00842528 /* VedioRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VedioRecordViewController.h; sourceTree = "<group>"; };
-		7F3051531AF2603C00842528 /* VedioRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VedioRecordViewController.m; sourceTree = "<group>"; };
-		7F3051541AF2603C00842528 /* VedioRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VedioRecordViewController.xib; sourceTree = "<group>"; };
+		7F30514F1AF1EABB00842528 /* EyeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EyeView.h; path = ../EyeView.h; sourceTree = "<group>"; };
+		7F3051501AF1EABB00842528 /* EyeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EyeView.m; path = ../EyeView.m; sourceTree = "<group>"; };
+		7F3051521AF2603C00842528 /* VedioRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VedioRecordViewController.h; path = ../VedioRecordViewController.h; sourceTree = "<group>"; };
+		7F3051531AF2603C00842528 /* VedioRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VedioRecordViewController.m; path = ../VedioRecordViewController.m; sourceTree = "<group>"; };
+		7F3051541AF2603C00842528 /* VedioRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VedioRecordViewController.xib; path = ../VedioRecordViewController.xib; sourceTree = "<group>"; };
 		7F8FD01E1AC2575C00C40F6E /* LMPullToRefresh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LMPullToRefresh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F8FD0221AC2575C00C40F6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F8FD0231AC2575C00C40F6E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -50,9 +50,9 @@
 		7F8FD0371AC2575C00C40F6E /* LMPullToRefreshTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LMPullToRefreshTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F8FD03C1AC2575C00C40F6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F8FD03D1AC2575C00C40F6E /* LMPullToRefreshTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LMPullToRefreshTests.m; sourceTree = "<group>"; };
-		7F8FD0471AC25CBC00C40F6E /* LMRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMRefreshControl.h; sourceTree = "<group>"; };
-		7F8FD0481AC25CBC00C40F6E /* LMRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMRefreshControl.m; sourceTree = "<group>"; };
-		7F8FD04A1AC25CD300C40F6E /* LMRefreshControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMRefreshControl.xib; sourceTree = "<group>"; };
+		7F8FD0471AC25CBC00C40F6E /* LMEyeVedioControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LMEyeVedioControl.h; path = ../LMEyeVedioControl.h; sourceTree = "<group>"; };
+		7F8FD0481AC25CBC00C40F6E /* LMEyeVedioControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMEyeVedioControl.m; path = ../LMEyeVedioControl.m; sourceTree = "<group>"; };
+		7F8FD04A1AC25CD300C40F6E /* LMEyeVedioControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LMEyeVedioControl.xib; path = ../LMEyeVedioControl.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +73,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F406BBF1AF4B46700D5CB4B /* EyeVedio */ = {
+			isa = PBXGroup;
+			children = (
+				7F8FD0471AC25CBC00C40F6E /* LMEyeVedioControl.h */,
+				7F8FD0481AC25CBC00C40F6E /* LMEyeVedioControl.m */,
+				7F8FD04A1AC25CD300C40F6E /* LMEyeVedioControl.xib */,
+				7F30514F1AF1EABB00842528 /* EyeView.h */,
+				7F3051501AF1EABB00842528 /* EyeView.m */,
+				7F3051521AF2603C00842528 /* VedioRecordViewController.h */,
+				7F3051531AF2603C00842528 /* VedioRecordViewController.m */,
+				7F3051541AF2603C00842528 /* VedioRecordViewController.xib */,
+			);
+			path = EyeVedio;
+			sourceTree = "<group>";
+		};
 		7F8FD0151AC2575C00C40F6E = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +109,7 @@
 		7F8FD0201AC2575C00C40F6E /* LMPullToRefresh */ = {
 			isa = PBXGroup;
 			children = (
+				7F406BBF1AF4B46700D5CB4B /* EyeVedio */,
 				7F8FD0251AC2575C00C40F6E /* AppDelegate.h */,
 				7F8FD0261AC2575C00C40F6E /* AppDelegate.m */,
 				7F8FD0281AC2575C00C40F6E /* ViewController.h */,
@@ -102,14 +118,6 @@
 				7F8FD02E1AC2575C00C40F6E /* Images.xcassets */,
 				7F8FD0301AC2575C00C40F6E /* LaunchScreen.xib */,
 				7F8FD0211AC2575C00C40F6E /* Supporting Files */,
-				7F8FD0471AC25CBC00C40F6E /* LMRefreshControl.h */,
-				7F8FD0481AC25CBC00C40F6E /* LMRefreshControl.m */,
-				7F8FD04A1AC25CD300C40F6E /* LMRefreshControl.xib */,
-				7F30514F1AF1EABB00842528 /* EyeView.h */,
-				7F3051501AF1EABB00842528 /* EyeView.m */,
-				7F3051521AF2603C00842528 /* VedioRecordViewController.h */,
-				7F3051531AF2603C00842528 /* VedioRecordViewController.m */,
-				7F3051541AF2603C00842528 /* VedioRecordViewController.xib */,
 			);
 			path = LMPullToRefresh;
 			sourceTree = "<group>";
@@ -222,7 +230,7 @@
 			files = (
 				7F3051561AF2603C00842528 /* VedioRecordViewController.xib in Resources */,
 				7F8FD02D1AC2575C00C40F6E /* Main.storyboard in Resources */,
-				7F8FD04B1AC25CD300C40F6E /* LMRefreshControl.xib in Resources */,
+				7F8FD04B1AC25CD300C40F6E /* LMEyeVedioControl.xib in Resources */,
 				7F8FD0321AC2575C00C40F6E /* LaunchScreen.xib in Resources */,
 				7F8FD02F1AC2575C00C40F6E /* Images.xcassets in Resources */,
 			);
@@ -245,7 +253,7 @@
 				7F8FD02A1AC2575C00C40F6E /* ViewController.m in Sources */,
 				7F3051551AF2603C00842528 /* VedioRecordViewController.m in Sources */,
 				7F8FD0271AC2575C00C40F6E /* AppDelegate.m in Sources */,
-				7F8FD0491AC25CBC00C40F6E /* LMRefreshControl.m in Sources */,
+				7F8FD0491AC25CBC00C40F6E /* LMEyeVedioControl.m in Sources */,
 				7F3051511AF1EABB00842528 /* EyeView.m in Sources */,
 				7F8FD0241AC2575C00C40F6E /* main.m in Sources */,
 			);
